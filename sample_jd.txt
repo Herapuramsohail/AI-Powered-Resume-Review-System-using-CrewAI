@@ -1,0 +1,26 @@
+Role: Senior Python / Backend Developer
+Location: Remote (US)
+Experience: 5+ years
+
+Company Overview:
+We are a fast-growing FinTech company building scalable wealth management APIs and investment portals. We process millions of financial transactions daily and prioritize high performance, system design, and security.
+
+Responsibilities:
+- Design, build, and maintain high-performance API services using Python, FastAPI, and PostgreSQL.
+- Architect microservices using Docker and deploy them to AWS (ECS, EKS, RDS).
+- Build and optimize CI/CD pipelines using GitHub Actions to accelerate deployments.
+- Collaborate with frontend engineers to integrate React applications with backend APIs.
+- Lead system design reviews, code reviews, and mentor junior team members.
+- Implement security best practices (OAuth2, HTTPS, encryption at rest) for financial data.
+
+Required Technical Skills:
+- Programming Languages: Python, SQL
+- Frameworks: FastAPI or Django or Flask, React (basic understanding)
+- Cloud & DevOps: AWS, Docker, Kubernetes, CI/CD (GitHub Actions)
+- Database: PostgreSQL, Redis
+- Practices: System Design, Agile/Scrum, Code Reviews, Unit Testing (pytest)
+
+Required Soft Skills:
+- Clear technical communication
+- Cross-functional collaboration
+- Mentorship and technical leadership

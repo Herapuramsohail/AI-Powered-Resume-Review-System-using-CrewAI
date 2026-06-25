@@ -1,0 +1,40 @@
+JOHN DOE
+Python Developer
+Email: john.doe@email.com | Phone: 555-019-2834
+Location: Austin, Texas
+LinkedIn: linkedin.com/in/johndoepy | GitHub: github.com/johndoepy
+
+PROFESSIONAL SUMMARY
+Reliable and motivated Software Developer with over 4 years of experience writing backend Python code. Familiar with web frameworks, database administration, and frontend technologies. Eager to join a growth-oriented company and contribute to engineering projects.
+
+TECHNICAL SKILLS
+- Programming: Python, SQL, JavaScript
+- Frameworks: Flask, Django, Bootstrap, jQuery
+- Databases: PostgreSQL, SQLite
+- Tools & Systems: Git, Jira, Slack, Linux
+
+WORK EXPERIENCE
+Python Developer | TechCorp Solutions (Jan 2022 - Present)
+- Worked on backend Python code for a customer management web portal.
+- Responsible for writing and maintaining database queries and schema migrations in PostgreSQL.
+- Assisted with troubleshooting issues and fixing bugs reported by clients.
+- Collaborated with frontend team members to connect endpoints to Bootstrap templates.
+- Attended weekly Agile Scrum standup meetings.
+
+Software Associate | WebDev Builders (Sep 2020 - Dec 2021)
+- Developed Flask web applications for local business clients.
+- Wrote unit tests for key application features to check for errors.
+- Handled deployment of websites to Heroku.
+- Managed user authentication and form validation code.
+
+EDUCATION
+Bachelor of Science in Computer Science (2016 - 2020)
+University of Texas, Austin
+
+PROJECTS
+Task Tracker App
+- Developed a simple web application using Flask and SQLite to help users organize daily tasks.
+- Added user login pages and database tracking.
+
+Weather Dashboard
+- Created a frontend page that calls a weather API and displays local forecasts using jQuery.

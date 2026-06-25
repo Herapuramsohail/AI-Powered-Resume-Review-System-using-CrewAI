@@ -1,0 +1,14 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+chroma_db/
+.streamlit/config.toml
+*.log
+.vscode/
+.idea/
+review_output.json
+*.pdf
+# except sample pdfs if wanted, but ignoring pdf is safer to avoid pushing user's personal resume pdfs
