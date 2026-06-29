@@ -1,133 +1,359 @@
-# AI Resume Review & ATS Optimization Agent
+# 🚀 AI Resume Review & ATS Optimization Agent
 
-A production-ready, multi-agent AI system built on **CrewAI** that parses resumes (PDF/DOCX), evaluates them for ATS compliance, runs a skills gap analysis against a target job description, calculates semantic job-fit matching, optimizes writing using the STAR method, and generates a downloadable PDF report via an interactive **Streamlit** dashboard.
+A production-ready **Multi-Agent AI Resume Review System** built with **CrewAI**, **Google Gemini API**, **ChromaDB (RAG)**, and **Streamlit**.
 
----
-
-## Architecture & Specialized Agents
-
-The system uses 6 collaborating agents, organized sequentially to review and score resumes:
-
-1. **Resume Parsing Agent**: Parses the raw document text and structures it into standardized sections using a target JSON format.
-2. **ATS Evaluation Agent**: Inspects the resume structure and formatting against standard ATS rules (RAG-supported via ChromaDB) and outputs an ATS Score, issues list, and layout adjustments.
-3. **Skills Gap Analysis Agent**: Compares the candidate's skills list against the target job description requirements. Finds missing technical and soft skills, querying a database of learning resources and certifications to build an upskilling pathway.
-4. **Job Match Agent**: Evaluates the semantic alignment of projects, experience, and scale against the target job description to compute a Job Description Match percentage.
-5. **Content Improvement Agent**: Reviews the experience bullet points and rewrites weak, duty-focused descriptions using the STAR method (Situation/Task/Action/Result) and action verbs.
-6. **Final Review Agent**: Aggregates all findings into a unified professional consultancy review report, computing the overall hiring readiness rating.
+The application analyzes resumes against a target job description, evaluates ATS compatibility, identifies skill gaps, calculates semantic job matching, rewrites resume content using the STAR method, and generates a professional downloadable PDF report.
 
 ---
 
-## Directory Structure
+## 🌐 Live Demo
+
+👉 **Try the Application Here**
+
+**https://ai-powered-resume-review-system-using-crewai-gbphhdab6nh5y3rxy.streamlit.app/**
+
+---
+
+# 📌 Features
+
+✅ Resume Parsing (PDF, DOCX & TXT)
+
+✅ ATS Compliance Analysis
+
+✅ Skills Gap Analysis
+
+✅ Semantic Job Match Score
+
+✅ STAR Method Resume Improvement
+
+✅ AI Resume Suggestions
+
+✅ Downloadable PDF Report
+
+✅ Retrieval-Augmented Generation (RAG)
+
+✅ Multi-Agent Collaboration using CrewAI
+
+---
+
+# 🏗️ System Architecture
+
+```
+                    Resume
+                       │
+                       ▼
+        Resume Parsing Agent
+                       │
+                       ▼
+         ATS Evaluation Agent
+                       │
+                       ▼
+       Skills Gap Analysis Agent
+                       │
+                       ▼
+          Job Match Agent
+                       │
+                       ▼
+      STAR Rewrite Agent
+                       │
+                       ▼
+         Final Review Agent
+                       │
+                       ▼
+     Professional PDF Report
+```
+
+---
+
+# 🤖 AI Agents
+
+### 1️⃣ Resume Parsing Agent
+
+- Parses PDF, DOCX and TXT resumes.
+- Extracts structured resume information.
+- Converts resume into a standardized JSON format.
+
+---
+
+### 2️⃣ ATS Evaluation Agent
+
+- Evaluates ATS compatibility.
+- Detects formatting issues.
+- Provides ATS Score.
+- Suggests improvements using a RAG knowledge base.
+
+---
+
+### 3️⃣ Skills Gap Analysis Agent
+
+- Compares resume skills with Job Description.
+- Finds missing technical and soft skills.
+- Suggests learning resources and certifications.
+
+---
+
+### 4️⃣ Job Match Agent
+
+- Computes semantic similarity between Resume and Job Description.
+- Generates Job Match Percentage.
+- Highlights matching and missing requirements.
+
+---
+
+### 5️⃣ Content Improvement Agent
+
+- Improves weak resume bullet points.
+- Converts them into STAR format.
+- Uses action verbs and quantified achievements.
+
+---
+
+### 6️⃣ Final Review Agent
+
+- Aggregates all agent outputs.
+- Computes Hiring Readiness Score.
+- Generates a professional PDF report.
+
+---
+
+# 🛠️ Tech Stack
+
+| Category | Technology |
+|----------|------------|
+| Language | Python |
+| AI Framework | CrewAI |
+| LLM | Google Gemini API |
+| Frontend | Streamlit |
+| Vector Database | ChromaDB |
+| Embeddings | Sentence Transformers |
+| PDF Parsing | pdfplumber, PyPDF2 |
+| DOCX Parsing | python-docx |
+| Data Models | Pydantic |
+| PDF Reports | FPDF2 |
+
+---
+
+# 📂 Project Structure
 
 ```
 resume-review-agent/
 │
 ├── agents/
-│   ├── __init__.py
-│   ├── parser_agent.py      # Resume Parser Agent
-│   ├── ats_agent.py         # ATS evaluation Agent
-│   ├── skills_agent.py      # Skills Gap Analysis Agent
-│   ├── job_match_agent.py   # Job Match Agent
-│   └── review_agent.py      # Content Improvement & Final Review Agents
+│   ├── parser_agent.py
+│   ├── ats_agent.py
+│   ├── skills_agent.py
+│   ├── job_match_agent.py
+│   └── review_agent.py
 │
 ├── tasks/
-│   ├── __init__.py
-│   ├── parsing_tasks.py     # Parsing Task
-│   ├── ats_tasks.py         # ATS Task
-│   ├── skills_tasks.py      # Skills Task
-│   └── review_tasks.py      # Job Match, Bullet Rewrite, and Final Review Tasks
+│   ├── parsing_tasks.py
+│   ├── ats_tasks.py
+│   ├── skills_tasks.py
+│   └── review_tasks.py
 │
 ├── tools/
-│   ├── __init__.py
-│   ├── pdf_parser.py        # PDF extractor (pdfplumber + PyPDF2 fallback)
-│   ├── docx_parser.py       # DOCX extractor (python-docx)
-│   ├── rag_tool.py          # ChromaDB search tool for agents
-│   └── models.py            # Pydantic schemas for task outputs
-│   └── pdf_generator.py     # Custom report generator using FPDF2
+│   ├── pdf_parser.py
+│   ├── docx_parser.py
+│   ├── rag_tool.py
+│   ├── models.py
+│   └── pdf_generator.py
 │
-├── knowledge_base/          # Advice documents for RAG indexing
+├── knowledge_base/
 │   ├── ats_standards.md
 │   ├── resumes_best_practices.md
 │   └── industry_skills.md
 │
-├── crew.py                  # Crew config and execution flow
-├── main.py                  # CLI application entrypoint
-├── app.py                   # Streamlit web dashboard
-├── setup_kb.py              # Knowledge base indexing script
-├── requirements.txt         # Package dependencies
-├── sample_resume.txt        # Mock text resume
-├── sample_jd.txt            # Mock job description
-└── README.md                # This documentation
+├── crew.py
+├── app.py
+├── main.py
+├── setup_kb.py
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
-## Environment Setup Guide
+# ⚙️ Installation
 
-### 1. Prerequisites
-- **Python**: Version 3.10 to 3.12.7.
-- **OpenAI API Key**: Required for GPT models (uses `gpt-4o` by default).
+Clone the repository
 
-### 2. Installation
-Clone the repository or navigate to your project folder, then install the dependencies:
+```bash
+git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+
+cd YOUR_REPOSITORY
+```
+
+Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Setup Environment Variables
-Create a `.env` file in the root directory (you can copy `.env.example` as a template):
+---
+
+# 🔑 Environment Variables
+
+Create a `.env` file.
 
 ```env
-OPENAI_API_KEY=your_actual_openai_api_key
-OPENAI_MODEL_NAME=gpt-4o
+GEMINI_API_KEY=your_gemini_api_key
 ```
 
-### 4. Build the Local Vector Database (ChromaDB)
-The Skills Gap and ATS agents use a RAG tool to query compliance rules and certifications. Build and populate the ChromaDB store by running:
+---
+
+# 📚 Build the Knowledge Base
+
+The ATS and Skills Gap agents use a Retrieval-Augmented Generation (RAG) pipeline backed by ChromaDB.
+
+Initialize the vector database:
 
 ```bash
 python setup_kb.py
 ```
-This script reads guidelines from `knowledge_base/`, computes embeddings using `sentence-transformers/all-MiniLM-L6-v2`, and initializes the vector store under `./chroma_db`.
 
-### 5. Generate Test PDF/DOCX Resume Files (Optional)
-To create actual PDF and Word documents from the sample text for testing, run:
-```bash
-python generate_test_files.py
-```
-This creates `sample_resume.pdf` and `sample_resume.docx` in the root folder.
+This indexes the documents inside the `knowledge_base/` directory.
 
 ---
 
-## How to Run
+# ▶️ Run the Application
 
-### Option A: Interactive Streamlit Dashboard
-Launch the web interface locally:
+Start the Streamlit app:
 
 ```bash
 streamlit run app.py
 ```
 
-**Using the Dashboard**:
-1. Open the local link (typically `http://localhost:8501`).
-2. Input your **OpenAI API Key** in the sidebar (if it is not already loaded from `.env`).
-3. Upload `sample_resume.pdf` or `sample_resume.docx` (created by the generator script).
-4. Paste the job description from `sample_jd.txt` or select the file upload option.
-5. Click **Analyze Resume** and watch the agents collaborate in real-time.
-6. Once finished, inspect the score cards and browse specific tabs for **ATS Audit**, **Skills Gap**, and **STAR Rewrites**.
-7. Click the **Download Detailed PDF Report** button to download a polished, branded evaluation document.
+Open:
 
-### Option B: Command Line Interface (CLI)
-Run the review command directly in the shell:
-
-```bash
-python main.py --resume sample_resume.txt --jd sample_jd.txt
+```
+http://localhost:8501
 ```
 
-**Arguments**:
-- `--resume`: Path to the candidate's resume (supports `.txt`, `.pdf`, `.docx`).
-- `--jd`: Path to the target job description (supports `.txt`).
-- `--model`: (Optional) OpenAI model to use (default: `gpt-4o`).
-- `--output`: (Optional) Output path for full JSON results (default: `review_output.json`).
+---
 
+# 💻 Command Line Usage
+
+```bash
+python main.py --resume sample_resume.pdf --jd sample_jd.txt
+```
+
+Optional arguments:
+
+```
+--resume
+
+--jd
+
+--output
+
+--model
+```
+
+---
+
+# 📊 Workflow
+
+```
+Upload Resume
+        │
+        ▼
+Upload Job Description
+        │
+        ▼
+Resume Parsing
+        │
+        ▼
+ATS Evaluation
+        │
+        ▼
+Skills Gap Analysis
+        │
+        ▼
+Job Match Score
+        │
+        ▼
+STAR Rewrite
+        │
+        ▼
+Final AI Review
+        │
+        ▼
+Download PDF Report
+```
+
+---
+
+# 🎯 Key Highlights
+
+- Multi-Agent AI System
+- Resume Parsing
+- ATS Score Calculation
+- Resume vs JD Matching
+- Skills Gap Detection
+- STAR Bullet Rewriting
+- RAG using ChromaDB
+- Professional PDF Report Generation
+- Streamlit Web Dashboard
+- Powered by Google Gemini API
+
+---
+
+# 🚀 Future Enhancements
+
+- Authentication & User Accounts
+- Resume History Dashboard
+- Multiple Resume Comparison
+- Support for Multiple LLMs (Gemini, OpenAI, Claude)
+- Cloud Database Integration
+- Resume Version Tracking
+- Interview Question Generator
+- Cover Letter Generator
+- AI Career Recommendations
+
+---
+
+# 📸 Screenshots
+
+> Add screenshots here after uploading them.
+
+Example:
+
+```
+screenshots/
+
+dashboard.png
+
+ats_score.png
+
+skills_gap.png
+
+pdf_report.png
+```
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!
+
+Feel free to fork the repository, improve features, and submit a pull request.
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+# 👨‍💻 Author
+
+**Mohammad Sohail**
+
+GitHub: https://github.com/YOUR_GITHUB_USERNAME
+
+LinkedIn: https://www.linkedin.com/in/YOUR_LINKEDIN/
+
+---
+
+⭐ If you found this project useful, don't forget to **Star** this repository!
