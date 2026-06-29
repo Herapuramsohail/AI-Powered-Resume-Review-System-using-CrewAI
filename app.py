@@ -104,29 +104,13 @@ def get_val(obj, key, default=None):
         return obj.get(key, default)
     return default
 
+# Load API Key and Model from environment variables/secrets
+api_key = os.getenv("GEMINI_API_KEY") or os.getenv("OPENAI_API_KEY") or os.getenv("ANTHROPIC_API_KEY", "")
+model_name = os.getenv("MODEL_NAME") or os.getenv("OPENAI_MODEL_NAME") or "gemini/gemini-2.5-flash"
+
 # Sidebar
 with st.sidebar:
     st.image("https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=400", use_container_width=True)
-    st.markdown("### ⚙️ Configuration")
-
-    api_key = st.text_input(
-        "API Key", type="password",
-        value=os.getenv("GEMINI_API_KEY", os.getenv("OPENAI_API_KEY", os.getenv("ANTHROPIC_API_KEY", "")))
-    )
-
-    model_name = st.selectbox(
-        "Model",
-        [
-            "gemini/gemini-2.5-flash",
-            "gemini/gemini-2.5-pro",
-            "gpt-4o",
-            "gpt-4o-mini",
-            "anthropic/claude-3-5-sonnet-20241022",
-        ],
-        index=0,
-    )
-
-    st.markdown("---")
     st.markdown("### 📁 Upload Files")
 
     uploaded_resume = st.file_uploader("Resume (PDF or DOCX)", type=["pdf", "docx"])
@@ -158,7 +142,7 @@ if not uploaded_resume or not jd_text:
     """)
 else:
     if not api_key:
-        st.warning("⚠️ Please enter your API Key in the sidebar.")
+        st.warning("⚠️ API Key not configured. Please set GEMINI_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY in your environment variables or Streamlit Cloud Secrets.")
     else:
         if st.sidebar.button("🚀 Analyze Resume", use_container_width=True):
             st.session_state.is_reviewed = False
